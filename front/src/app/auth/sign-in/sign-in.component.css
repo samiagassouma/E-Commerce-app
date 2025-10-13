@@ -1,0 +1,121 @@
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(152, 71, 199, 0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .modal-dialog {
+    background-color: #000000;
+    padding: 40px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+   
+  }
+  
+  /* Form Inputs */
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    pointer-events: auto;
+  }
+  
+  
+  
+  /* Form Styling */
+  .form-register input.form-control {
+    background-color: #3a2352;
+    border: none;
+    color: white;
+  }
+  
+  .form-register input.form-control::placeholder {
+    color: #d1c4e9;
+  }
+  
+  .form-register .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-register label {
+    color: white;
+  }
+  
+  .btn.btn-buy {
+    background-color: #90C290; /* Vert doux */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  .btn.btn-buy:hover {
+    background-color: #90C290; /* Légèrement plus foncé au survol */
+  }
+  
+  .btn.btn-buy:disabled {
+    background-color: #90C290;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  
+  /* Google login button */
+  .btn-login {
+    background-color: white;
+    padding: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Texts */
+  .text-white {
+    color: white !important;
+  }
+  
+  .text-danger {
+    color: #ff5252;
+  }
+  
+  .font-xs {
+    font-size: 0.8rem;
+  }
+  
+  .font-sm {
+    font-size: 0.9rem;
+  }
+  
+  .font-md-bold {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  
+  .close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 10;
+    
+  }
+  
+  .close-button:hover {
+    color: #90C290;
+  }

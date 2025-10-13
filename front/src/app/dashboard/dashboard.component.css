@@ -1,0 +1,8 @@
+.custom-scrollable {
+    flex: 1;
+    padding: 2rem; 
+    overflow-y: auto;
+    background-color: #ffffff; 
+    color: #000000; 
+  }
+  

@@ -1,0 +1,51 @@
+<div class="payments-container">
+    <h2>My Payments</h2>
+
+    <table class="payments-table">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Status</th>
+                <th>Method</th>
+                <th>Date</th>
+                <th>Subscription Plan</th>
+                <th>Billing Cycle</th>
+                <th>Invoice</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let payment of payments">
+                <td>{{ payment.amount }} {{ payment.currency }}</td>
+                <td>
+                    <span class="status-badge" [ngClass]="{
+              'completed': payment.paymentStatus === 'completed',
+              'pending': payment.paymentStatus === 'pending',
+              'failed': payment.paymentStatus === 'failed'
+            }">
+                        {{ payment.paymentStatus }}
+                    </span>
+                </td>
+                <td>{{ payment.paymentMethod || '-' }}</td>
+                <td>{{ payment.paymentDate | date:'mediumDate' }}</td>
+                <td>{{ payment.subscriptionPlan || '-' }}</td>
+                <td>
+                    <div *ngIf="payment.billingCycleStart && payment.billingCycleEnd; else noCycle">
+                        {{ payment.billingCycleStart | date:'shortDate' }} →
+                        {{ payment.billingCycleEnd | date:'shortDate' }}
+                    </div>
+                    <ng-template #noCycle>-</ng-template>
+                </td>
+                <td>
+                    <button class="invoice-btn" (click)="viewInvoice(payment)">
+                        👁 View
+                    </button>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <div *ngIf="payments.length === 0" class="no-data">
+        No payments found.
+    </div>
+</div>

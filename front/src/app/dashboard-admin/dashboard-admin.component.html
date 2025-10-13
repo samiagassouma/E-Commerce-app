@@ -1,0 +1,211 @@
+<!-- app.component.html or main-layout.component.html -->
+<div class="main-container">
+  <!-- Mobile Dropdown Button -->
+  <div class="dropdown-menu-container">
+    <button class="dropdown-toggle" (click)="toggleDropdown()" (mouseleave)="dropdownOpen = false">
+      ☰
+    </button>
+    <div class="dropdown-content" [class.show]="dropdownOpen">
+      <a routerLink="/dashboard">Dashboard</a>
+      <a routerLink="/dashboard-admin/users" (click)="toggleDropdown()">Users</a>
+      <a routerLink="/dashboard-admin/assistants" (click)="toggleDropdown()">Assistants</a>
+      <a routerLink="/dashboard-admin/payments" (click)="toggleDropdown()">Payments</a>
+      <a routerLink="/dashboard-admin/reports" (click)="toggleDropdown()">Reports</a>
+    </div>
+  </div>
+  <div class="avatar-container">
+    <div class="avatar" (click)="toggleStatusDropdown()">
+      <span class="avatar-text">
+        {{ (currentUser?.name?.charAt(0) || '' | uppercase) + (currentUser?.lastName?.charAt(0) || '' | uppercase) }}
+      </span>
+    </div>
+    <!-- Online Status -->
+    <div class="online-status"></div>
+
+    <!-- Enhanced Dropdown Content -->
+    <div class="dropdown-content" [class.show]="dropdownStatusOpen" (mouseleave)="dropdownStatusOpen = false">
+      <!-- User Header -->
+      <div class="user-header">
+        <div class="user-info">
+          <h3 class="user-name">
+            {{ currentUser?.name }} {{ currentUser?.lastName }}
+          </h3>
+          <p class="user-role">
+            <svg class="role-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            {{ currentUser?.role }}
+          </p>
+          <p class="user-email">
+            <svg class="email-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+            </svg>
+            {{ currentUser?.email }}
+          </p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="dropdown-divider"></div>
+
+      <!-- Action Links -->
+      <div class="action-links">
+        <a class="action-link settings-link" (click)="openEditModal()">
+          <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Account Settings</span>
+        </a>
+
+        <a class="action-link logout-link" (click)="confirmLogout()">
+          <svg class="action-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Sign Out</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <app-aside class="app-aside" (modalStateChange)="asideHasModal = $event" [class.has-modal]="asideHasModal">
+  </app-aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header Bar -->
+    <header class="header">
+      <div class="header-content">
+        <div>
+          <h1 class="page-title">
+            {{ pageTitle }}
+          </h1>
+        </div>
+      </div>
+    </header>
+
+      <!-- Content Area -->
+      <div class="content-area">
+        <router-outlet></router-outlet>
+      </div>
+
+  </main>
+</div>
+
+<!-- Settings Modal -->
+<div *ngIf="showEditModal" class="modal-overlay">
+  <div class="modal-container">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="icon-container">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="modal-title">Settings</h2>
+          <p class="modal-subtitle">Manage your account information</p>
+        </div>
+      </div>
+      <button class="close-button" (click)="closeEditModal()">
+        <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Profile Form -->
+    <form (ngSubmit)="save()" #profileForm="ngForm" class="profile-form">
+      <!-- Form Fields -->
+      <div class="form-grid">
+        <div class="form-field">
+          <label class="form-label">First Name</label>
+          <input type="text" [(ngModel)]="editForm.name" name="name" required class="form-input" />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Last Name</label>
+          <input type="text" [(ngModel)]="editForm.lastName" name="lastName" required class="form-input" />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input type="email" [(ngModel)]="editForm.email" name="email" required class="form-input" />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" [(ngModel)]="editForm.phone" name="phone" class="form-input" />
+        </div>
+
+        <div class="form-field form-field-full">
+          <label class="form-label">Address</label>
+          <textarea [(ngModel)]="editForm.address" name="address" rows="3" class="form-textarea"></textarea>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="button" (click)="closeEditModal()" class="form-button cancel-button">
+          Cancel
+        </button>
+        <button type="submit" class="form-button submit-button">
+          <span class="button-content">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Save</span>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div *ngIf="showLogoutModal" class="modal-overlay-logout fade-in" (click)="closeLogoutModal()">
+  <div class="modal-content scale-in" (click)="$event.stopPropagation()">
+    <div class="modal-body">
+      <!-- Header -->
+      <div class="modal-header-logout">
+        <div class="modal-icon">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="modal-title">Confirm Logout</h3>
+          <p class="modal-subtitle">Are you sure you want to sign out?</p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="modal-message">
+        <p>
+          You will be signed out of your account and redirected to the login page.
+          Any unsaved changes will be lost.
+        </p>
+      </div>
+
+      <!-- Actions -->
+      <div class="modal-actions">
+        <button (click)="closeLogoutModal()" class="btn-cancel">
+          Cancel
+        </button>
+        <button (click)="logout()" class="btn-logout">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

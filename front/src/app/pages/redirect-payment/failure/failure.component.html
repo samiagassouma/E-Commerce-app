@@ -1,0 +1,59 @@
+<div class="payment-page" ng-show="currentPage === 'failure'">
+    <div class="failure-header">
+        <div class="floating-shapes">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+        </div>
+        <div class="failure-icon">
+            <i class="fas fa-times"></i>
+        </div>
+        <h1 class="failure-title">Payment Failed</h1>
+        <p class="failure-subtitle">We couldn't process your payment</p>
+    </div>
+
+    <div class="page-content">
+        <div class="error-card">
+            <h3 class="details-title">
+                <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+                What happened?
+            </h3>
+            <ul class="solution-list">
+                <li class="solution-item" ng-repeat="error in errorDetails">
+                    <div class="bullet error-bullet"></div>
+                    <span>"error"</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="solution-card">
+            <h3 class="details-title">
+                <i class="fas fa-lightbulb"></i>
+                Try these solutions:
+            </h3>
+            <ul class="solution-list">
+                <li class="solution-item" ng-repeat="solution in solutions">
+                    <div class="bullet"></div>
+                    <span>solution</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="btn-container">
+
+            <div class="btn-row">
+                <button class="btn btn-secondary" (click)="goBack()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Go Back</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="support-section">
+            <p class="support-text">Need help? Our support team is here for you</p>
+            <a href="#" class="support-link" ng-click="contactSupport()">
+                Contact Support →
+            </a>
+        </div>
+    </div>
+</div>

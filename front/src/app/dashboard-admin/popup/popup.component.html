@@ -1,0 +1,25 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="icon-container">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="iconPath"></path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="modal-title">{{title}}</h2>
+          <p class="modal-subtitle">{{subtitle}}</p>
+        </div>
+      </div>
+      <button class="close-button" (click)="cancel.emit()">
+        <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</div>

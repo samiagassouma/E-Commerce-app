@@ -1,0 +1,197 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #fff;
+    overflow-x: hidden;
+  }
+  
+  .header {
+    background: linear-gradient(to right, #6A1B9A, #4F4F45);
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .login-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .main-content {
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .highlight {
+    color: #E85D04;
+  }
+  
+  .description {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+    min-width: 200px;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(to right, #A792C1, #4F4F45);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-secondary {
+    border: 1px solid #333;
+    background: white;
+  }
+  
+  /* Stars *//* Stars using Bootstrap Icons */
+  .star {
+    position: absolute;
+    font-size: 2.5rem;
+    z-index: 1;
+    color: #6A1B9A;
+  }
+  
+  .top-left {
+    top: 120px;
+    left: 40px;
+  }
+  
+  .top-right {
+    top: 120px;
+    right: 40px;
+    color: #E85D04;
+  }
+  
+  
+  /* Bottom Decorative Shapes */
+  .shape {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    z-index: 0;
+    transform: rotate(15deg);
+    opacity: 0.4;
+  }
+  
+  .shape-left {
+    bottom: -50px;
+    left: -80px;
+    background-color: #b29dd9;
+    border: 20px solid #6A1B9A;
+  }
+  
+  .shape-right {
+    bottom: -50px;
+    right: -80px;
+    background-color: #f9a55c;
+    border: 20px solid #E85D04;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .login-btn {
+      align-self: flex-end;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .description {
+      font-size: 0.95rem;
+    }
+  
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+  
+    .star {
+      font-size: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo h2 {
+      font-size: 1.2rem;
+    }
+  
+    .logo img {
+      height: 32px;
+    }
+  
+    .login-btn {
+      font-size: 0.9rem;
+      padding: 6px 12px;
+    }
+  
+    h1 {
+      font-size: 1.7rem;
+    }
+  
+    .description {
+      font-size: 0.9rem;
+    }
+  
+    .shape {
+      width: 180px;
+      height: 180px;
+    }
+  }
+  

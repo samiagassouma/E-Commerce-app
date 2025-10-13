@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>🎉 Assistant Created Successfully</h2>
+
+<mat-dialog-content>
+  <p><strong>Your assistant key:</strong></p>
+  <p style="word-break: break-all;">{{ data.assistantKey }}</p>
+</mat-dialog-content>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="copyKey()">📋 Copy Key</button>
+  <button mat-button color="primary" (click)="closeDialog()">Close</button>
+</div>

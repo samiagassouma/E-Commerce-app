@@ -1,0 +1,44 @@
+<div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-10 px-6">
+  <div class="max-w-7xl mx-auto text-center mb-10">
+    <h2 class="text-3xl font-bold text-gray-900">Choisissez le plan qui vous convient</h2>
+    <p class="text-gray-600 mt-2">Commencez avec l’assistant IA dès aujourd’hui 🚀</p>
+  </div>
+
+  <div class="flex flex-nowrap overflow-x-auto gap-6 pb-6 justify-center">
+    <div *ngFor="let card of cards" 
+         class="flex-none w-80 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 cursor-pointer border border-gray-200 relative">
+
+
+      <div class="p-6 flex flex-col h-full">
+
+        <!-- Plan -->
+        <div class="text-center mb-3">
+          <span class="text-2xl font-extrabold text-gray-900">{{ card.plan }}</span>
+        </div>
+
+        <!-- Price -->
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+          <sup class="text-sm font-medium text-gray-500">TND</sup>{{ card.cost / 1000 }}
+        </h1>
+        <p class="text-sm text-gray-600 mb-5">{{ card.description }}</p>
+
+        <!-- Features -->
+        <ul class="space-y-2 mb-6 text-sm text-left">
+          <li *ngFor="let feature of card.features" class="flex items-center text-gray-700">
+            <svg class="h-4 w-4 text-green-500 mr-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                 viewBox="0 0 24 24" stroke="currentColor">
+              <path d="M5 13l4 4L19 7"></path>
+            </svg>
+            {{ feature }}
+          </li>
+        </ul>
+
+        <!-- Button -->
+        <button (click)="payment(card.cost, card.plan)" 
+                class="mt-auto w-full py-3 px-4 text-sm text-center font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 rounded-xl shadow-md transition-all duration-300">
+          🚀 Commencer maintenant
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

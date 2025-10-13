@@ -1,0 +1,160 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="camel-header">
+    <img src="assets/camel-icon.webp" alt="Logo" class="camel-logo" />
+    <span class="camel-title" *ngIf="!isCollapsed">Camelai</span>
+  </div>
+
+  <ul>
+    <li class="nav-item">
+      <i class="fa fa-home"></i>
+      <span *ngIf="!isCollapsed">Dashboard</span>
+    </li>
+
+    <li class="nav" (click)="setSection('overview')">
+      <i class="fa fa-chart-bar"></i>
+      <span *ngIf="!isCollapsed">Overview</span>
+    </li>
+    <li class="nav" (click)="setSection('ais')">
+      <i class="fa fa-robot"></i>
+      <span *ngIf="!isCollapsed">AIs</span>
+    </li>
+    <li class="nav" (click)="setSection('payments')">
+      <i class="fa fa-wallet"></i>
+      <span *ngIf="!isCollapsed">Payments</span>
+    </li>
+    <li class="nav" (click)="setSection('settings')">
+      <i class="fa fa-cog"></i>
+      <span *ngIf="!isCollapsed">Settings</span>
+    </li>
+  </ul>
+
+  <div class="bottom-links">
+    <a href="#">
+      <i class="fa fa-star"></i>
+      <span *ngIf="!isCollapsed">Request Features</span>
+    </a>
+    <a href="#">
+      <i class="fa fa-life-ring"></i>
+      <span *ngIf="!isCollapsed">Get Support</span>
+    </a>
+    <div class="profile" (click)="openEditModal()">
+      <i class="fa-solid fa-user"></i>
+      <span *ngIf="!isCollapsed">mariem.sebei...</span>
+    </div>
+  </div>
+
+  <button class="toggle-btn" (click)="toggleSidebar()">
+    <i class="fa" [ngClass]="{'fa-arrow-left': !isCollapsed, 'fa-arrow-right': isCollapsed}"></i>
+  </button>
+</div>
+
+
+<!-- Edit Modal -->
+
+
+<div *ngIf="showEditModal" class="modal-overlay" (click)="closeEditModal()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="icon-container">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+            </path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="modal-title">Edit Profile</h2>
+          <p class="modal-subtitle">Update Information</p>
+        </div>
+      </div>
+      <button class="close-button" (click)="closeEditModal()">
+        <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Form Content -->
+    <div class="modal-form-content">
+      <form [formGroup]="editForm" (ngSubmit)="saveUser()" class="edit-form">
+
+        <!-- First Name & Last Name -->
+        <div class="form-row">
+          <div class="form-field">
+            <label class="form-label">First Name</label>
+            <input formControlName="name" class="form-input" placeholder="First name" />
+          </div>
+          <div class="form-field">
+            <label class="form-label">Last Name</label>
+            <input formControlName="lastName" class="form-input" placeholder="Last name" />
+          </div>
+        </div>
+
+        <!-- Company name -->
+        <div class="form-field">
+          <label class="form-label">Company name</label>
+          <input formControlName="company_name" class="form-input" placeholder="Company name" />
+        </div>
+
+        <!-- Email (Read-only) -->
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <div class="form-readonly">
+            <div class="form-readonly-content">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+              </svg>
+              <span class="form-readonly-text">{{ editForm.get('email')?.value || 'No email' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-field">
+          <label class="form-label">Phone Number</label>
+          <input formControlName="phone" class="form-input" placeholder="Phone number" />
+        </div>
+
+        <!-- Address -->
+        <div class="form-field">
+          <label class="form-label">Address</label>
+          <textarea formControlName="address" rows="2" class="form-textarea" placeholder="Address"></textarea>
+        </div>
+
+        <!-- Tax number -->
+        <div class="form-field">
+          <label class="form-label">Tax number</label>
+          <input formControlName="tax_number" class="form-input" placeholder="Tax number" />
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="button" (click)="closeEditModal()" class="form-button cancel-button">
+            Cancel
+          </button>
+          <button type="submit" [disabled]="editForm.invalid" class="form-button submit-button">
+            <span class="button-content">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Save</span>
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Success Toast -->
+<div *ngIf="showSuccessToast" class="toast slide-in">
+  <div class="toast-content">
+    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <span>Profile updated successfully!</span>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<main class="main-content">
+  <div class="top-bar">
+    <h1>Your AIs</h1>
+  </div>
+
+  <div class="assistants-wrapper">
+    <div *ngFor="let assistant of assistants; let i = index" class="ai-card" [style.--delay]="(i * 0.15) + 's'">
+      <div class="ai-image">
+        <img src="assets/camel-icon.webp" alt="AI Logo" class="ai-logo" />
+      </div>
+
+      <div class="ai-details">
+        <h2>{{ assistant.companyname }}</h2>
+        <p>{{ assistant.description }}</p>
+
+        <div class="ai-links">
+          <a [href]="frontendUrl + '/chat?' + assistant.assistantkey" target="_blank" class="link">
+            {{ frontendUrl + '/chat?' + assistant.assistantkey }}
+            <i class="fa fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+      <!-- Payment Button -->
+      <div class="flex">
+        <div class="button-container">
+          <button class="payment-btn" [routerLink]="['/payment', assistant.id]">
+            Pay
+          </button>
+        </div>
+        <!-- Remaining subscription days -->
+        <!-- <p class="subscription-remaining" [ngClass]="8 > 7 ? 'green' : 'red'">
+          {{ diffMonthsAndDays(assistant.payments[0].billingCycleStart, assistant.payments[0].billingCycleEnd ) }} days
+          left in your subscription
+        </p> -->
+
+        <p class="subscription-remaining" [ngClass]="assistant.remainingPeriod.months > 0 
+                ? 'green' 
+                : (assistant.remainingPeriod.days === 0 
+                    ? 'red' 
+                    : (assistant.remainingPeriod.days <= 3 
+                        ? 'orange' 
+                        : 'green'))">
+          {{ assistant.remainingPeriod.months > 0 ? (assistant.remainingPeriod.months + ' months ') : '' }}
+          {{assistant.remainingPeriod.days}} days
+          left in your subscription
+        </p>
+      </div>
+    </div>
+  </div>
+
+</main>

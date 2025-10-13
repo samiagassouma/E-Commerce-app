@@ -1,0 +1,11 @@
+<div class="flex h-screen bg-gray-100">
+    <app-aside (sectionSelected)="onSectionSelected($event)"></app-aside>
+  
+    <div class="custom-scrollable">
+      <app-overview *ngIf="selectedSection === 'overview'"></app-overview>
+      <app-ais *ngIf="selectedSection === 'ais'"></app-ais>
+      <app-payments *ngIf="selectedSection === 'payments'"></app-payments>
+      <app-settings *ngIf="selectedSection === 'settings'"></app-settings>
+    </div>
+  </div>
+  

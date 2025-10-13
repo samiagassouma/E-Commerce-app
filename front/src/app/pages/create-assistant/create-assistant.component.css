@@ -1,0 +1,168 @@
+form {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #ffffff;
+  padding: 2.5rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(31, 20, 53, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Group flex pour deux colonnes */
+.row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.col-md-6 {
+  flex: 1 1 48%;
+  min-width: 250px;
+}
+
+/* Labels */
+label.form-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #000000;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+  user-select: none;
+}
+
+/* Inputs, textareas, selects */
+input.form-control,
+textarea.form-control,
+select.form-select {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 0.75rem;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-weight: 500;
+  color: #333;
+}
+
+input.form-control::placeholder,
+textarea.form-control::placeholder {
+  color: #aaa;
+}
+
+input.form-control:focus,
+textarea.form-control:focus,
+select.form-select:focus {
+  outline: none;
+  border-color: #300130; /* violet moderne */
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(138, 119, 154, 0.3);
+}
+
+/* Textarea hauteur */
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Espacement vertical */
+.mb-3, .mb-4 {
+  margin-bottom: 1.25rem !important;
+}
+
+/* Bouton moderne */
+button.custom-btn {
+  padding: 0.75rem 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #978aa1, #300130);
+  border: none;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  transition: background 0.35s ease;
+  width: 100%;
+  box-shadow: 0 5px 15px #300130;
+}
+
+button.custom-btn:hover {
+  background: linear-gradient(135deg, #685875, #290529);
+  box-shadow: 0 7px 20px #300130;
+}
+
+/* Centrage texte bouton */
+.text-center {
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+  .col-md-6 {
+    flex: 1 1 100%;
+  }
+  form {
+    padding: 2rem 1.5rem;
+  }
+}
+
+.form-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+/* Pour le bouton mat-icon */
+.mat-icon-button {
+  color: #640101;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.mat-icon-button:hover {
+  color: #e70000; /* rouge léger au survol */
+}
+.mat-icon-button {
+  position: absolute;
+  top: 10px;
+  right: 100px;
+}
+
+.form-wrapper {
+  position: relative; /* Pour positionner le bouton croix dedans */
+}
+
+
+/* Responsive - ajuste la position sur petit écran */
+@media (max-width: 600px) {
+  .close-btn {
+    top: 1rem;
+    right: 1rem;
+    font-size: 22px;
+  }}
+
+
+  .spinner {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  

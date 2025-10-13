@@ -1,0 +1,311 @@
+<!-- sidebar.component.html -->
+<aside class="sidebar" [class.has-modal]="showEditModal">
+  <!-- Logo Section -->
+  <div class="logo-container">
+    <div class="logo-section">
+      <!-- Admin Logo -->
+      <div class="logo-icon">
+        <!-- Shield User Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M12 2l8 4v6c0 5-3 9-8 11-5-2-8-6-8-11V6l8-4zM12 12a2 2 0 100-4 2 2 0 000 4zm0 2c-2.7 0-5 1.3-5 3v1h10v-1c0-1.7-2.3-3-5-3z" />
+        </svg>
+      </div>
+      <!-- Admin Text -->
+      <div class="logo-text">
+        <h1 class="title">AdminHub</h1>
+        <p class="subtitle">Professional Control</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="navigation" (mouseleave)="showDropdown = false">
+    <!-- Reports Section -->
+    <a [routerLink]="['reports']" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link">
+
+      <div class="nav-icon-container">
+        <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="nav-content">
+        <span class="nav-title">Analytics & Reports</span>
+        <p class="nav-subtitle">Business insights</p>
+      </div>
+
+      <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+
+    <a [routerLink]="['users']" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link">
+
+      <div class="nav-icon-container">
+        <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="nav-content">
+        <span class="nav-title">User Management</span>
+        <p class="nav-subtitle">Control user accounts</p>
+      </div>
+
+      <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+
+    <!-- Assistants Section -->
+    <a [routerLink]="['assistants']" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link">
+
+      <div class="nav-icon-container">
+        <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+          </path>
+        </svg>
+      </div>
+
+      <div class="nav-content">
+        <span class="nav-title">AI Assistants</span>
+        <p class="nav-subtitle">Manage AI systems</p>
+      </div>
+
+      <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+
+    <!-- Payments Section -->
+    <a [routerLink]="['payments']" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link">
+
+      <div class="nav-icon-container">
+        <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+        </svg>
+      </div>
+
+      <div class="nav-content">
+        <span class="nav-title">Payment Center</span>
+        <p class="nav-subtitle">Financial operations</p>
+      </div>
+
+      <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+
+    <!-- User Dashboard -->
+    <a [routerLink]="['/dashboard']" class="dashboard-link">
+      <div class="nav-icon-container dashboard-icon">
+        <svg class="nav-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 9.75L12 3l9 6.75V20a1 1 0 01-1 1h-5.25V14.25h-5.5V21H4a1 1 0 01-1-1V9.75z"></path>
+        </svg>
+      </div>
+
+      <div class="nav-content">
+        <span class="nav-title">Front Office</span>
+        <p class="nav-subtitle">User dashboard</p>
+      </div>
+
+      <svg class="nav-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  </nav>
+
+  <!-- Status Footer -->
+  <div class="status-footer">
+    <div class="user-card">
+      <!-- Avatar -->
+      <div class="avatar-container">
+        <div class="avatar">
+          <span class="avatar-text">
+            {{ (currentUser?.name?.charAt(0) || '' | uppercase) + (currentUser?.lastName?.charAt(0) || '' | uppercase)
+            }}
+          </span>
+        </div>
+        <!-- Online Status -->
+        <div class="online-status"></div>
+      </div>
+
+      <!-- Profile Info -->
+      <div class="profile-info">
+        <h3 class="profile-name" [title]="(currentUser?.name || '') + ' ' + (currentUser?.lastName || '')">
+          {{ currentUser?.name }} {{ currentUser?.lastName }}
+        </h3>
+        <p class="profile-role" [title]="currentUser?.role || ''">
+          {{ currentUser?.role }}
+        </p>
+        <p class="profile-email" [title]="currentUser?.email || ''">
+          {{ currentUser?.email }}
+          <!-- gasssouma.samia&#64;gmail.com -->
+        </p>
+      </div>
+
+      <!-- Dropdown Button -->
+      <div class="dropdown-container">
+        <button (click)="toggleDropdown()" class="dropdown-button">
+          <svg class="dropdown-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+            </path>
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div *ngIf="showDropdown" class="dropdown-menu">
+          <button (click)="openEditModal()" class="dropdown-item">
+            <span>Settings</span>
+          </button>
+          <hr class="dropdown-divider">
+          <button (click)="confirmLogout()" class="dropdown-item logout-item">
+            <span>Logout</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <button class="toggle-btn" (click)="toggleSidebar()">
+    <i class="fa" [ngClass]="{'fa-arrow-left': !isCollapsed, 'fa-arrow-right': isCollapsed}"></i>
+  </button>
+
+</aside>
+
+
+<!-- Settings Modal -->
+<div *ngIf="showEditModal" class="modal-overlay">
+  <div class="modal-container">
+    <!-- Header -->
+    <div class="modal-header">
+      <div class="header-content">
+        <div class="icon-container">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z">
+            </path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
+            </path>
+          </svg>
+        </div>
+        <div>
+          <h2 class="modal-title">Settings</h2>
+          <p class="modal-subtitle">Manage your account information</p>
+        </div>
+      </div>
+      <button class="close-button" (click)="closeEditModal()">
+        <svg class="close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Profile Form -->
+    <form (ngSubmit)="save()" #profileForm="ngForm" class="profile-form">
+      <!-- Form Fields -->
+      <div class="form-grid">
+        <div class="form-field">
+          <label class="form-label">First Name</label>
+          <input type="text" [(ngModel)]="editForm.name" name="name" required class="form-input" />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Last Name</label>
+          <input type="text" [(ngModel)]="editForm.lastName" name="lastName" required class="form-input" />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Email Address</label>
+          <input type="email" [(ngModel)]="editForm.email" name="email" required class="form-input" />
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" [(ngModel)]="editForm.phone" name="phone" class="form-input" />
+        </div>
+
+        <div class="form-field form-field-full">
+          <label class="form-label">Address</label>
+          <textarea [(ngModel)]="editForm.address" name="address" rows="3" class="form-textarea"></textarea>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="button" (click)="closeEditModal()" class="form-button cancel-button">
+          Cancel
+        </button>
+        <button type="submit" class="form-button submit-button">
+          <span class="button-content">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span>Save</span>
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Logout Confirmation Modal -->
+<div *ngIf="showLogoutModal" class="modal-overlay-logout fade-in" (click)="closeLogoutModal()">
+  <div class="modal-content scale-in" (click)="$event.stopPropagation()">
+    <div class="modal-body">
+      <!-- Header -->
+      <div class="modal-header-logout">
+        <div class="modal-icon">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+          </svg>
+        </div>
+        <div>
+          <h3 class="modal-title">Confirm Logout</h3>
+          <p class="modal-subtitle">Are you sure you want to sign out?</p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class="modal-message">
+        <p>
+          You will be signed out of your account and redirected to the login page.
+          Any unsaved changes will be lost.
+        </p>
+      </div>
+
+      <!-- Actions -->
+      <div class="modal-actions">
+        <button (click)="closeLogoutModal()" class="btn-cancel">
+          Cancel
+        </button>
+        <button (click)="logout()" class="btn-logout">
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Toast -->
+<div *ngIf="showSuccessToast" class="toast slide-in">
+  <div class="toast-content">
+    <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <span>Profile updated successfully!</span>
+  </div>
+</div>

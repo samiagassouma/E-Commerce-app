@@ -1,0 +1,105 @@
+<main class="main">
+    <!-- Modal Overlay -->
+    <div *ngIf="isModalOpen" class="modal-overlay" (click)="closeModal($event)">
+      <!-- Modal Dialog -->
+      <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="signInTitle">
+        <!-- Close Button -->
+        <button class="close-button" aria-label="Close login modal" (click)="closeModal($event)">×</button>
+  
+        <h3 id="signInTitle" class="text-white text-center">Welcome back!</h3>
+  
+        <div class="form-register mt-30 mb-50">
+          <form [formGroup]="signInForm" (ngSubmit)="onSubmit()" novalidate>
+            <!-- Email Input -->
+            <div class="form-group input-with-icon">
+              <label for="email" class="mb-2 font-sm text-white">Email *</label>
+              <input
+                id="email"
+                class="form-control"
+                formControlName="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                aria-describedby="emailHelp"
+                required
+              />
+              <div
+                *ngIf="signInForm.get('email')?.invalid && (signInForm.get('email')?.touched || signInForm.get('email')?.dirty)"
+                class="text-danger"
+                id="emailHelp"
+              >
+                Please enter a valid email.
+              </div>
+            </div>
+  
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="password" class="mb-2 font-sm text-white">Password *</label>
+              <input
+                id="password"
+                class="form-control"
+                formControlName="password"
+                name="password"
+                type="password"
+                placeholder="******************"
+                required
+                minlength="6"
+                aria-describedby="passwordHelp"
+              />
+              <div
+                *ngIf="signInForm.get('password')?.invalid && (signInForm.get('password')?.touched || signInForm.get('password')?.dirty)"
+                class="text-danger"
+                id="passwordHelp"
+              >
+                Password is required (min 6 characters).
+              </div>
+            </div>
+  
+            <!-- Remember Me & Forgot Password -->
+            <div class="row">
+              <div class="col-lg-6">
+                <label class="font-xs text-white">
+                  <input type="checkbox" /> Remember me
+                </label>
+              </div>
+              <div class="col-lg-6 text-end">
+                <a class="font-xs text-white" routerLink="/forgot-password" tabindex="0">
+                  Forgot your password?
+                </a>
+              </div>
+            </div>
+  
+            <!-- Submit Button -->
+            <div class="form-group">
+              <button
+                type="submit"
+                class="font-md-bold btn btn-buy"
+                [disabled]="signInForm.invalid"
+              >
+                Sign In
+              </button>
+            </div>
+  
+            <!-- General Error Message -->
+            <div *ngIf="errorMessage" class="text-danger text-center mt-3" role="alert">
+              {{ errorMessage }}
+            </div>
+  
+            <!-- Google Login (Placeholder) -->
+            <div class="box-button-login mt-25">
+              <a class="btn btn-login font-md-bold color-brand-3 mb-15 disabled" tabindex="-1" aria-disabled="true">
+                <img src="assets/imgs/page/account/google.svg" alt="Google" />
+              </a>
+            </div>
+  
+            <!-- Register Redirect -->
+            <div class="mt-20 text-center">
+              <span class="font-xs text-white font-medium">Don't have an account?</span>
+              <a class="font-xs text-white font-medium" [routerLink]="['/signup']"> Register Now</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  

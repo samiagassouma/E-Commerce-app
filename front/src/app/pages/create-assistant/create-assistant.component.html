@@ -1,0 +1,111 @@
+<div class="form-wrapper">
+
+  <div class="form-header" style="display: flex; justify-content: flex-end;">
+    <button mat-icon-button (click)="closeDialog()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="assistantForm" (ngSubmit)="onSubmit()">
+
+    <!-- Section infos générales -->
+    <div class="row mb-3">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <label for="companyName" class="form-label">Name</label>
+        <input type="text" id="companyName" class="form-control" formControlName="companyName" placeholder="Company name">
+      </div>
+      <div class="col-md-6">
+        <label for="domaine" class="form-label">Domaine</label>
+        <input type="text" id="domaine" class="form-control" formControlName="domaine" placeholder="Domaine">
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" formControlName="description" rows="4" placeholder="Description"></textarea>
+    </div>
+
+    <!-- Choix de la base -->
+    <div class="mb-3">
+      <label for="databaseType" class="form-label">What types of Database?</label>
+      <select id="databaseType" class="form-select" formControlName="databaseType" (change)="onDatabaseTypeChange()">
+        <option disabled selected value="">Database type</option>
+        <option value="supabase">Supabase</option>
+        <option value="mongodb">MongoDB</option>
+        <option value="postgres">PostgreSQL</option>
+        <option value="mysql">MySQL</option>
+        <option value="firebase">Firebase</option>
+      </select>
+    </div>
+
+    <!-- Champ commun : URL DB -->
+    <div class="mb-4">
+      <label for="urlDb" class="form-label">URL DB:</label>
+      <input type="url" id="urlDb" class="form-control" formControlName="urlDb" placeholder="Link:">
+    </div>
+
+    <!-- Supabase -->
+    <div *ngIf="selectedDbType === 'supabase'">
+      <div class="mb-3">
+        <label for="supabaseKey" class="form-label">Supabase Key</label>
+        <input type="text" id="supabaseKey" class="form-control" formControlName="supabaseKey" placeholder="Supabase service role key" />
+      </div>
+    </div>
+
+    <!-- MongoDB -->
+    <div *ngIf="selectedDbType === 'mongodb'">
+      <div class="mb-3">
+        <label class="form-label">DATABASE_NAME</label>
+        <input type="text" class="form-control" formControlName="databaseName" placeholder="Database Name">
+      </div>
+    </div>
+
+    <!-- MySQL / PostgreSQL -->
+    <div *ngIf="selectedDbType === 'mysql' || selectedDbType === 'postgres'">
+      <div class="mb-3">
+        <label class="form-label">USERNAME</label>
+        <input type="text" class="form-control" formControlName="username" placeholder="User name">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">PASSWORD</label>
+        <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">DATABASE_NAME</label>
+        <input type="text" class="form-control" formControlName="databaseName" placeholder="Database Name">
+      </div>
+    </div>
+
+    <!-- Firebase -->
+    <div *ngIf="selectedDbType === 'firebase'">
+      <div class="mb-3">
+        <label class="form-label">Firebase Credentials JSON</label>
+        <textarea class="form-control" formControlName="firebaseCredsJson" rows="4" placeholder="Paste JSON credentials"></textarea>
+      </div>
+    </div>
+
+    <!-- Limited Tables / Collections (Affiché selon base sélectionnée) -->
+    <ng-container *ngIf="['supabase', 'mongodb', 'mysql', 'postgres', 'firebase'].includes(selectedDbType)">
+      <div class="mb-3">
+        <label for="limitedTables" class="form-label">
+          Limited {{ selectedDbType === 'firebase' ? 'Collections' : 'Tables' }}
+        </label>
+        <input
+          type="text"
+          id="limitedTables"
+          class="form-control"
+          formControlName="limitedTables"
+          placeholder="e.g. users, orders, logs" />
+      </div>
+    </ng-container>
+
+    <!-- Submit -->
+    <div class="text-center">
+      <button type="submit" class="btn custom-btn w-100" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Create Assistant</span>
+        <span *ngIf="isLoading" class="spinner"></span>
+      </button>
+    </div>
+  </form>
+
+</div>

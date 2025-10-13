@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="invoice-container">
+    <!-- Header -->
+    <div class="invoice-header">
+      <div class="company-info">
+        <div class="logo-section">
+          <div class="logo-container">
+            <img [src]="companyInfo.logo" [alt]="companyInfo.name + ' Logo'" class="company-logo">
+          </div>
+          <div class="company-text">
+            <h1 class="company-name">{{ companyInfo.name }}</h1>
+            <p>{{ companyInfo.address }}</p>
+            <p>{{ companyInfo.city }}</p>
+            <p>Tél: {{ companyInfo.phone }}</p>
+            <p>Email: {{ companyInfo.email }}</p>
+          </div>
+        </div>
+        <div class="company-details">
+          <p><strong>SIRET:</strong> {{ companyInfo.siret }}</p>
+          <p><strong>N° TVA:</strong> {{ companyInfo.tva }}</p>
+        </div>
+      </div>
+      <div class="header-right">
+
+        <div class="invoice-info">
+          <h2 class="invoice-title">FACTURE</h2>
+          <div class="invoice-details">
+            <p><strong>N° Facture:</strong> {{ invoiceNumber }}</p>
+            <p><strong>Date:</strong> {{ invoiceDate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Info -->
+    <div class="client-section">
+      <h3>Facturé à:</h3>
+      <div class="client-info">
+        <p><strong>{{ clientInfo.name }}</strong></p>
+        <p>{{ clientInfo.company }}</p>
+        <p>Contact: {{ clientInfo.email }}</p>
+        <p>Matricule fiscale: {{clientInfo.taxNumber }}</p>
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <div class="items-section">
+      <table class="items-table">
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th>Total HT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Assistant</td>
+            <td>{{ quantite }}</td>
+            <td>{{ formatCurrency(payment.amount) }}</td>
+            <td>{{ formatCurrency( payment.amount * quantite ) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tax Summary -->
+    <div class="tax-summary">
+      <div class="summary-table">
+
+        <div class="summary-row tax-row">
+          <span class="summary-label">TVA {{ tvaRate }}%:</span>
+          <span class="summary-value">{{ formatCurrency(tvaAmount) }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Timbre fiscal:</span>
+          <span class="summary-value">{{ formatCurrency(timbreFiscal) }}</span>
+        </div>
+        <div class="summary-row tax-row">
+          <span class="summary-label"><strong>MONTANT TOTAL TTC:</strong></span>
+          <span><strong> {{ formatCurrency(totalTTC) }}</strong></span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Footer -->
+    <div class="invoice-footer">
+      <p class="footer-text">
+        Merci pour votre confiance. Pour toute question concernant cette facture,
+        n'hésitez pas à nous contacter.
+      </p>
+      <div class="legal-mentions">
+        <p>{{companyInfo.name}} • {{companyInfo.address}} - {{companyInfo.city}} • {{companyInfo.phone}}</p>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Buttons -->
+  <div class="footer-buttons">
+    <button (click)="goBack()" class="btn btn-blue">
+      ⬅ Retour
+    </button>
+    <button (click)="generateInvoicePDF()" class="btn btn-green">
+      📄 Télécharger
+    </button>
+  </div>
+</div>

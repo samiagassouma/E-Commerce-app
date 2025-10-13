@@ -1,0 +1,70 @@
+<div class="w-[1000px] h-[700px] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden border border-gray-300 mx-auto my-5">
+  <!-- Header -->
+  <header class="header-gradient p-4 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden">
+        <img src="assets/camel-icon.webp" alt="icon" class="w-6 h-6 object-contain" />
+      </div>
+      <div>
+        <div class="font-bold text-lg">CameLai</div>
+        <div class="text-green-500 text-xs font-semibold flex items-center gap-1">
+          <span class="w-2 h-2 bg-green-500 rounded-full inline-block"></span>
+          Online
+        </div>
+      </div>
+    </div>
+    <button class="text-white text-2xl font-semibold">&times;</button>
+  </header>
+
+  <!-- Messages -->
+  <div #chatMessages class="flex-1 p-4 sm:p-5 overflow-y-auto bg-white flex flex-col gap-4 relative scroll-smooth">
+    <div *ngFor="let msg of messages" class="relative">
+      <!-- Bot Message -->
+      <ng-container *ngIf="msg.sender !== 'user'; else userMessage">
+        <div class="flex items-start gap-3 ml-2 sm:ml-10">
+          <div class="flex flex-col items-center">
+            <div class="w-9 h-9 bg-orange-50 rounded-full flex items-center justify-center overflow-hidden">
+              <img src="assets/camel-icon.webp" alt="Camel icon" class="w-5 h-5 object-contain" />
+            </div>
+          </div>
+          <div class="bg-purple-300 text-[#1f1435] rounded-[15px_15px_15px_5px] max-w-[75%] p-3 text-sm leading-snug">
+            {{ msg.text }}
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- User Message -->
+      <ng-template #userMessage>
+        <div class="flex justify-end">
+          <div class="bg-gray-200 text-gray-800 rounded-[15px_15px_5px_15px] max-w-[75%] p-3 text-sm leading-snug">
+            {{ msg.text }}
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- Typing Indicator -->
+    <div *ngIf="isTyping" class="flex gap-2 ml-1 mt-2 items-center">
+      <div class="w-2 h-2 bg-gray-700 rounded-full animate-pulse opacity-40"></div>
+      <div class="w-2 h-2 bg-gray-700 rounded-full animate-pulse opacity-40 delay-200"></div>
+      <div class="w-2 h-2 bg-gray-700 rounded-full animate-pulse opacity-40 delay-400"></div>
+      <span class="text-xs text-gray-400 ml-2">CamélIA réfléchit...</span>
+    </div>
+  </div>
+
+  <!-- Input area -->
+  <form (ngSubmit)="sendMessage()" class="chat-input-area p-4 border-t border-gray-100 flex items-center gap-3 bg-[#1f1435] rounded-b-2xl">
+    <input
+      [(ngModel)]="userInput"
+      name="message"
+      placeholder="Type your message here..."
+      class="flex-1 rounded-full py-2 px-4 text-sm outline-none"
+      required
+    />
+    <button type="submit" class="text-white">
+      <svg class="w-6 h-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+      </svg>
+    </button>
+  </form>
+</div>
