@@ -5,7 +5,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { firstValueFrom } from 'rxjs';
 import { UpdatePaymentDto } from 'src/DTO/update-payment.dto';
 import { Payment } from 'src/entities/payment.entity';
-import { environemt } from 'src/environment';
 import { supabase } from 'src/supabase/supabase.client';
 import { SupabaseService } from 'src/supabase/supabase.service';
 import { Repository } from 'typeorm';
@@ -14,7 +13,7 @@ import * as path from 'path';
 
 function readSecret(file: string): string | undefined {
   try {
-    return fs.readFileSync(path.join('C:/Users/gasso/Downloads/secrets', file), 'utf8').trim();
+    return fs.readFileSync(path.join('/etc/secrets', file), 'utf8').trim();
   } catch {
     return undefined;
   }
@@ -60,8 +59,8 @@ export class PaymentsService {
             "phoneNumber": user.phone,
             "email": user.email,
             "orderId": assistantId,
-            "successUrl": environemt.frontendUrl + "/redirectPaymentSuccess",
-            "failUrl": environemt.frontendUrl + "/redirectPaymentFailure",
+            "successUrl": process.env.NODE_ENV === 'production' ? 'http://frontend-service.development.svc.cluster.local' : 'http://localhost:4200' + "/redirectPaymentSuccess",
+            "failUrl": process.env.NODE_ENV === 'production' ? 'http://frontend-service.development.svc.cluster.local' : 'http://localhost:4200' + "/redirectPaymentFailure",
             "webhook": `https://8c86a56575c7.ngrok-free.app/webhook?plan=${encodeURIComponent(plan)}&userId=${encodeURIComponent(user.idUser)}`, //"http://localhost:4200/redirectPayment",
             "silentWebhook": true,
             "theme": "dark"

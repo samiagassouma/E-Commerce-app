@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: development
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: gassouma530975/testdeploy:frontend-e67ab5410de034701d289b6d8fa7f4700defea55
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              memory: "256Mi" # Maximum memory allowed
+              cpu: "3m" # Maximum CPU allowed (200 milliCPU)
+            requests:
+              memory: "128Mi" # Initial memory request
+              cpu: "2m" # Initial CPU request
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: development
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: frontend
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+  namespace: development
+spec:
+  maxReplicas: 5 # define max replica count
+  minReplicas: 1 # define min replica count
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend-deployment
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 50

@@ -5,13 +5,11 @@ import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
-import { environemt } from './environment';
 
 
 async function bootstrap() {
 
   const app = await NestFactory.create(AppModule, new ExpressAdapter(express()));
-  const frontendUrl = environemt.frontendUrl;
   app.use(cookieParser());
 
   // Global validation pipe for DTOs
