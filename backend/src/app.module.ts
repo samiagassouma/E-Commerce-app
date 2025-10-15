@@ -59,7 +59,7 @@ function readSecret(file: string): string | undefined {
       autoLoadEntities: true,
       ssl: {
         ca: dbSSLCert?.replace(/\\n/g, '\n'), // Important pour le format du certificat
-        rejectUnauthorized: true
+        rejectUnauthorized: false
       },
       extra: {
         connectionLimit: 5,
