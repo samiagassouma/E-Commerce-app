@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - main
+permissions:
+  contents: write 
 
 jobs:
   build:
@@ -26,47 +28,11 @@ jobs:
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # Build and push FRONTEND image
-      - name: Build and Push Frontend Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./frontend
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags:
-            docker.io/gassouma530975/testdeploy:frontend-${{ github.sha }}
-            # Build and push FRONTEND image
-      - name: Build and Push Backend Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: ./backend
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: docker.io/gassouma530975/testdeploy:backend-${{ github.sha }}
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          image-ref: "docker.io/gassouma530975/testdeploy:frontend-${{ github.sha }}"
-          format: "table"
-          #exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: "os,library"
-          severity: "CRITICAL,HIGH"
-
+     
       - name: Commit and Push Changes
         run: |
-          sed -i "s|gassouma530975/testdeploy:.*|gassouma530975/testdeploy:frontend-${{github.sha}}|" manifests/front.yaml
-          sed -i "s|gassouma530975/testdeploy:.*|gassouma530975/testdeploy:backend-${{github.sha}}|" manifests/back.yaml
+          sed -i "s|gassouma530975/testdeploy:.*|gassouma530975/testdeploy:frontend-0d2246f683627302faa884d656e69966ba8d02eb|" manifests/front.yaml
+          sed -i "s|gassouma530975/testdeploy:.*|gassouma530975/testdeploy:backend-0d2246f683627302faa884d656e69966ba8d02eb|" manifests/back.yaml
           # configure user
           git config --global user.name "${{ github.actor }}"
           git config --global user.email "${{ github.actor }}@users.noreply.github.com"
