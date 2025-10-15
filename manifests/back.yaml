@@ -25,10 +25,10 @@ spec:
           resources:
             limits:
               memory: "256Mi" # Maximum memory allowed
-              cpu: "20m" # Maximum CPU allowed (200 milliCPU)
+              cpu: "100m" # Maximum CPU allowed (200 milliCPU)
             requests:
               memory: "128Mi" # Initial memory request
-              cpu: "10m" # Initial CPU request
+              cpu: "100m" # Initial CPU request
       volumes:
         - name: secret-volume
           secret:
