@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: gassouma530975/testdeploy:backend-0d2246f683627302faa884d656e69966ba8d02eb
+          image: gassouma530975/testdeploy:backend-70129818282ad36e5bb259079061f5736149e058
           ports:
             - containerPort: 80
           volumeMounts:
