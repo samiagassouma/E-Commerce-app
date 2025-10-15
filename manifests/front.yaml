@@ -18,6 +18,13 @@ spec:
           image: gassouma530975/testdeploy:frontend-70129818282ad36e5bb259079061f5736149e058
           ports:
             - containerPort: 80
+          resources:
+            limits:
+              memory: "256Mi" # Maximum memory allowed
+              cpu: "100m" # Maximum CPU allowed (200 milliCPU)
+            requests:
+              memory: "128Mi" # Initial memory request
+              cpu: "100m" # Initial CPU request
 
 ---
 apiVersion: v1
