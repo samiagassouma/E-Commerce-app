@@ -79,3 +79,15 @@ jobs:
           git commit -m 'files changed ${{github.sha}}'
           # push the commit back up to source GitHub repository
           git push
+      - name: Trigger ArgoCD sync
+        run: |
+          TOKEN=$(curl -s -k -X POST "$ARGOCD_SERVER/api/v1/session" \
+            -H "Content-Type: application/json" \
+            -d '{"username":"'"$ARGOCD_USER"'","password":"'"$ARGOCD_PASSWORD"'"}' | jq -r .token)
+          curl -k -X POST "$ARGOCD_SERVER/api/v1/applications/testapp/sync" \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Content-Type: application/json"
+        env:
+          ARGOCD_SERVER: https://192.168.1.27:32315
+          ARGOCD_USER: ${{ secrets.ARGOCD_USER }}
+          ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
