@@ -148,16 +148,24 @@ export class PaymentsService {
         }
         console.log("Last payment:", lastPayment[0]);
 
-        const start = new Date(lastPayment[0].billingCycleStart);
-        const end = new Date(lastPayment[0].billingCycleEnd);
+        let diffDays = 0;
 
-        // difference in ms
-        const diffMs = end.getTime() - start.getTime();
+        if(lastPayment[0]){
 
-        // difference in days
-        const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const start = new Date(lastPayment[0].billingCycleStart);
+            const end = new Date(lastPayment[0].billingCycleEnd);
 
-        console.log("Difference in days:", diffDays);
+            // difference in ms
+            const diffMs = end.getTime() - start.getTime();
+
+            // difference in days
+            diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+            console.log("Difference in days:", diffDays);
+
+        }
+
+        
 
         // Calculate billingCycleEnd by adding daysToAdd days to billingCycleStart
         let daysToAdd = 0;

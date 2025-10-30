@@ -64,13 +64,13 @@ export class SignInComponent implements OnInit {
        // Redirect based on role
        switch (res.user.role) {
          case 'ADMIN':
-           this.router.navigate(['dashborad']);
+           this.router.navigate(['dashboard']);
            break;
            case 'CUSTOMER':
-             this.router.navigate(['dashborad']);
+             this.router.navigate(['dashboard']);
              break;
          default:
-           this.router.navigate(['dashborad']);
+           this.router.navigate(['dashboard']);
        }
      },
      error: (err) => {

@@ -18,7 +18,7 @@ export class PaymentComponent implements OnInit {
 
   cards = [
     {
-      cost: 199,
+      cost: 120000,
       plan: '1 mois',
       description: 'Idéal pour tester l’assistant IA et un usage personnel',
       icon: 'bot',
@@ -26,7 +26,7 @@ export class PaymentComponent implements OnInit {
       features: ['50 requêtes IA / jour', 'Réponses rapides', 'Support standard']
     },
     {
-      cost: 499,
+      cost: 240000,
       plan: '3 mois',
       description: 'Parfait pour les étudiants et petites équipes',
       icon: 'brain',
@@ -34,7 +34,7 @@ export class PaymentComponent implements OnInit {
       features: ['200 requêtes IA / jour', 'Analyse de documents', 'Support prioritaire']
     },
     {
-      cost: 899,
+      cost: 400000,
       plan: '6 mois',
       description: 'Conçu pour les entreprises et une utilisation intensive',
       icon: 'sparkles',
