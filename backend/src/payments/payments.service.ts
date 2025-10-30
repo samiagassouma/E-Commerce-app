@@ -59,8 +59,8 @@ export class PaymentsService {
             "phoneNumber": user.phone,
             "email": user.email,
             "orderId": assistantId,
-            "successUrl": process.env.NODE_ENV === 'production' ? 'http://frontend-service.development.svc.cluster.local' : 'http://localhost:4200' + "/redirectPaymentSuccess",
-            "failUrl": process.env.NODE_ENV === 'production' ? 'http://frontend-service.development.svc.cluster.local' : 'http://localhost:4200' + "/redirectPaymentFailure",
+            "successUrl": process.env.NODE_ENV === 'production' ? 'https://shopstore.freeddns.org' : 'http://localhost:4200' + "/redirectPaymentSuccess",
+            "failUrl": process.env.NODE_ENV === 'production' ? 'https://shopstore.freeddns.org' : 'http://localhost:4200' + "/redirectPaymentFailure",
             "webhook": `https://8c86a56575c7.ngrok-free.app/webhook?plan=${encodeURIComponent(plan)}&userId=${encodeURIComponent(user.idUser)}`, //"http://localhost:4200/redirectPayment",
             "silentWebhook": true,
             "theme": "dark"
