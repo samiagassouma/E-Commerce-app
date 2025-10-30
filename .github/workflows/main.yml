@@ -15,20 +15,7 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       
 
-      - name: Commit and Push Changes
-        run: |
-          sed -i "s|gassouma530975/testdeploy:.*|gassouma530975/testdeploy:frontend-eb6f416d6368f788983da65fadfcd62ec6afa938|" manifests/front.yaml
-          sed -i "s|gassouma530975/testdeploy:.*|gassouma530975/testdeploy:backend-eb6f416d6368f788983da65fadfcd62ec6afa938|" manifests/back.yaml
-          # configure user
-          git config --global user.name "${{ github.actor }}"
-          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
-          # stage any file changes to be committed
-          git add manifests/front.yaml
-          git add manifests/back.yaml
-          # make commit with staged changes
-          git commit -m 'files changed eb6f416d6368f788983da65fadfcd62ec6afa938'
-          # push the commit back up to source GitHub repository
-          git push
+
       - name: Trigger ArgoCD sync
         run: |
           TOKEN=$(curl -s -k -X POST "$ARGOCD_SERVER/api/v1/session" \
