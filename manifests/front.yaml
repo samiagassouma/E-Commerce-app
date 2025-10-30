@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: gassouma530975/testdeploy:frontend-eb6f416d6368f788983da65fadfcd62ec6afa938
+          image: gassouma530975/testdeploy:frontend-918ef8031642125a2f6325a050d30e6252cdd23f
           ports:
             - containerPort: 80
           resources:
