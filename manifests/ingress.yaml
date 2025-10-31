@@ -1,55 +1,55 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: ingress
-#   namespace: development
-#   annotations:
-#     cert-manager.io/cluster-issuer: "letsencrypt-production"
-#     # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-#     # nginx.ingress.kubernetes.io/ssl-redirect: "true"
-#     # nginx.ingress.kubernetes.io/hsts: "true"
-#     # nginx.ingress.kubernetes.io/hsts-max-age: "31536000" # 1 year
-#     # nginx.ingress.kubernetes.io/hsts-include-subdomains: "true"
-#     # nginx.ingress.kubernetes.io/hsts-preload: "true"
-# spec:
-#   ingressClassName: webapprouting.kubernetes.azure.com #nginx
-#   tls:
-#     - hosts:
-#         - shopstore.freeddns.org
-#         - www.shopstore.freeddns.org
-#       secretName: tls-secret
-#   rules:
-#     - host: shopstore.freeddns.org
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: frontend-service
-#                 port:
-#                   number: 80
-#           - path: /webhook
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: backend-service
-#                 port:
-#                   number: 3000
-#     - host: www.shopstore.freeddns.org
-#       http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: frontend-service
-#                 port:
-#                   number: 80
-#           - path: /webhook
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: backend-service
-#                 port:
-#                   number: 3000
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress
+  namespace: development
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    # nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    # nginx.ingress.kubernetes.io/hsts: "true"
+    # nginx.ingress.kubernetes.io/hsts-max-age: "31536000" # 1 year
+    # nginx.ingress.kubernetes.io/hsts-include-subdomains: "true"
+    # nginx.ingress.kubernetes.io/hsts-preload: "true"
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com #nginx
+  tls:
+    - hosts:
+        - shopstore.freeddns.org
+        - www.shopstore.freeddns.org
+      secretName: tls-secret
+  rules:
+    - host: shopstore.freeddns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80
+          - path: /webhook
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 3000
+    - host: www.shopstore.freeddns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80
+          - path: /webhook
+            pathType: Prefix
+            backend:
+              service:
+                name: backend-service
+                port:
+                  number: 3000
