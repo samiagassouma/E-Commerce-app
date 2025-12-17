@@ -88,6 +88,6 @@ jobs:
             -H "Authorization: Bearer $TOKEN" \
             -H "Content-Type: application/json"
         env:
-          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }} #https://20.83.160.209
+          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }} #https://20.83.160.209 
           ARGOCD_USER: ${{ secrets.ARGOCD_USER }}
           ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
