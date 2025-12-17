@@ -60,13 +60,13 @@ export class User {
   })
   address: string;
 
-  // @Column({
-  //   type: 'text',
-  //   unique: true,
-  //   nullable: true,
-  //   name: 'password',
-  // })
-  // password: string;
+  @Column({
+    type: 'text',
+    unique: true,
+    nullable: true,
+    name: 'password',
+  })
+  password: string;
 
   @Column({
     type: 'enum',

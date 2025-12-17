@@ -55,15 +55,15 @@ jobs:
       #     platforms: linux/amd64,linux/arm64
       #     tags: docker.io/gassouma530975/testdeploy:backend-${{ github.sha }}
 
-      # - name: Run Trivy vulnerability scanner
-      #   uses: aquasecurity/trivy-action@0.28.0
-      #   with:
-      #     image-ref: "docker.io/gassouma530975/testdeploy:frontend-${{ github.sha }}"
-      #     format: "table"
-      #     #exit-code: '1'
-      #     ignore-unfixed: true
-      #     vuln-type: "os,library"
-      #     severity: "CRITICAL,HIGH"
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: "docker.io/gassouma530975/testdeploy:frontend-${{ github.sha }}"
+          format: "table"
+          #exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
 
       # - name: Commit and Push Changes
       #   run: |
@@ -79,15 +79,15 @@ jobs:
       #     git commit -m 'files changed ${{github.sha}}'
       #     # push the commit back up to source GitHub repository
       #     git push
-      - name: Trigger ArgoCD sync
-        run: |
-          TOKEN=$(curl -s -k -X POST "$ARGOCD_SERVER/api/v1/session" \
-            -H "Content-Type: application/json" \
-            -d '{"username":"'"$ARGOCD_USER"'","password":"'"$ARGOCD_PASSWORD"'"}' | jq -r .token)
-          curl -k -X POST "$ARGOCD_SERVER/api/v1/applications/testapp/sync" \
-            -H "Authorization: Bearer $TOKEN" \
-            -H "Content-Type: application/json"
-        env:
-          ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }} #https://20.83.160.209 
-          ARGOCD_USER: ${{ secrets.ARGOCD_USER }}
-          ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
+      # - name: Trigger ArgoCD sync
+      #   run: |
+      #     TOKEN=$(curl -s -k -X POST "$ARGOCD_SERVER/api/v1/session" \
+      #       -H "Content-Type: application/json" \
+      #       -d '{"username":"'"$ARGOCD_USER"'","password":"'"$ARGOCD_PASSWORD"'"}' | jq -r .token)
+      #     curl -k -X POST "$ARGOCD_SERVER/api/v1/applications/testapp/sync" \
+      #       -H "Authorization: Bearer $TOKEN" \
+      #       -H "Content-Type: application/json"
+      #   env:
+      #     ARGOCD_SERVER: ${{ secrets.ARGOCD_SERVER }} #https://20.83.160.209 
+      #     ARGOCD_USER: ${{ secrets.ARGOCD_USER }}
+      #     ARGOCD_PASSWORD: ${{ secrets.ARGOCD_PASSWORD }}
